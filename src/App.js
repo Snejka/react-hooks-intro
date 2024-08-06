@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [ count, setCount ] = useState(0)
+
+  //Executed after every render
+  useEffect(() => {
+    document.title = `Current counter value is ${count}!`;
+  })
 
   const changeCount = (increment = true) => {
     setCount(prevCount => {
