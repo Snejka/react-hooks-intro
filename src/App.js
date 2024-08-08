@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export default function App() {
 
   const [ results, setResults ] = useState([]);
-  const [ query, setQuery ] = useState('react hooks')
+  const [ query, setQuery ] = useState('react hooks');
+  const searchInputRef = useRef();
 
   useEffect(() => {
     getResults();
@@ -18,11 +19,12 @@ export default function App() {
   const handleSearch = event => {
     event.preventDefault();
     getResults();
+    searchInputRef.current.focus();
   }
 
   return (
     <><form onSubmit={handleSearch}>
-        <input type="search" value={query} onChange={(e)=>{setQuery(e.target.value)}}/>
+        <input type="search" value={query} ref={searchInputRef} onChange={(e)=>{setQuery(e.target.value)}}/>
         <button type="submit">Search</button>
       </form>
       {(results.length !== 0) && <ul>
