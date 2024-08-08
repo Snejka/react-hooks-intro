@@ -5,15 +5,18 @@ export default function App() {
 
   const [ results, setResults ] = useState([]);
   const [ query, setQuery ] = useState('react hooks');
+  const [ loading, setLoading ] = useState(false);
   const searchInputRef = useRef();
 
   useEffect(() => {
     getResults();
   }, []);
 
-  const getResults = async () =>{
+  const getResults = async () => {
+    setLoading(true);
     const response = await axios.get(`http://hn.algolia.com/api/v1/search?query=${query}`);
     setResults(response.data.hits);
+    setLoading(false);
   }
 
   const handleSearch = event => {
@@ -23,17 +26,24 @@ export default function App() {
   }
 
   return (
-    <><form onSubmit={handleSearch}>
+    <>
+      <form onSubmit={handleSearch}>
         <input type="search" value={query} ref={searchInputRef} onChange={(e)=>{setQuery(e.target.value)}}/>
         <button type="submit">Search</button>
       </form>
-      {(results.length !== 0) && <ul>
-        {results.map(result => (
-          <li key={result.objectID}>
-            <a href={result.url}>{result.title}</a>
-          </li>
-        ))}
-      </ul>}
+      { loading
+        ? <div>
+            <p>Loading results...</p>
+          </div>
+        : <ul>
+            {results.map(result => (
+              <li key={result.objectID}>
+                <a href={result.url}>{result.title}</a>
+              </li>
+            ))}
+          </ul> 
+        
+      }
     </>
   );
 }
