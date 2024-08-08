@@ -5,12 +5,15 @@ export default function App() {
 
   const [ results, setResults ] = useState([]);
 
-  useEffect(()=>{
-    axios.get('http://hn.algolia.com/api/v1/search?query=reacthooks')
-         .then( response => {
-           setResults(response.data.hits);
-         })
-  }, [])
+  useEffect(() => {
+    getResults();
+  }, []);
+
+  const getResults = async () =>{
+    const response = await axios.get('http://hn.algolia.com/api/v1/search?query=reacthooks');
+    setResults(response.data.hits);
+  }
+
   return (
     <ul>
       {results.map(result => (
