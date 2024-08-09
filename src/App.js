@@ -31,7 +31,7 @@ export default function App() {
     getResults();
     searchInputRef.current.focus();
   }
-
+  //TODO: Styling
   return (
     <>
       <form onSubmit={handleSearch}>
