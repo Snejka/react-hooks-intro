@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const username = "Dave";
+export const UserContext = createContext(username);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <UserContext.Provider value={username}>
+      <App /> 
+    </UserContext.Provider>
   </React.StrictMode>
 );
 

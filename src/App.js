@@ -1,7 +1,13 @@
+import React from "react";
+import { UserContext } from "./index";
 
 function App() {
   return (
-    <div>Hello world!</div>
+    <div>
+      <UserContext.Consumer>
+          { value => <p> Hello, {value}!</p> }
+      </UserContext.Consumer>
+    </div>
   );
 }
 
