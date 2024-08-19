@@ -16,8 +16,12 @@ export default function TodoList () {
                     style={{ color: todo.complete ? 'yellow' : 'blue' }}
                 >
                     {todo.text + " " +( todo.complete ? "Done!" : "")}
-                    <button>Delete</button>
-                    <button>Edit</button>
+
+                    <button onClick={() => dispatch({ type: "REMOVE_TODO", payload: todo })}>
+                        Delete
+                    </button>
+
+                    <button onClick={ () => dispatch({ type: "EDDIT_TODO", payload: todo.id })}>Edit</button>
                 </li>)
             )}
         </ul>
