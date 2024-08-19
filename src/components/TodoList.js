@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import TodosContext from "../context";
 
+import MainHeading from "./MainHeading";
+
 export default function TodoList () {
   const { state, dispatch } = useContext(TodosContext);
 
   const title = (state.todos.length > 0) ? `${state.todos.length} Todos!` : "Nothing To Do!";
 
   return (
-    <>
-        <h1>{title}</h1>
+    <>  
+        <MainHeading>{ title }</MainHeading>
         <ul>
             {state.todos.map( todo => (
                 <li key={todo.id} 
