@@ -16,6 +16,8 @@ export default function TodoList () {
                     style={{ color: todo.complete ? 'yellow' : 'blue' }}
                 >
                     {todo.text + " " +( todo.complete ? "Done!" : "")}
+                    <button>Delete</button>
+                    <button>Edit</button>
                 </li>)
             )}
         </ul>
