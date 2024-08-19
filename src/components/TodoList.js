@@ -23,7 +23,7 @@ export default function TodoList () {
                         Delete
                     </button>
 
-                    <button onClick={ () => dispatch({ type: "EDDIT_TODO", payload: todo.id })}>Edit</button>
+                    <button onClick={ () => dispatch({ type: "EDDIT_TODO", payload: todo })}>Edit</button>
                 </li>)
             )}
         </ul>

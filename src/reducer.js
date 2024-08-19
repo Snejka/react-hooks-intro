@@ -1,4 +1,4 @@
-import { actionAddTodo, actionRemoveTodos, actionTodosToggle } from "./components/actions";
+import { actionAddTodo, actionRemoveTodos, actionTodosToggle, actionUpdateTodos } from "./components/actions";
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -22,6 +22,20 @@ export default function reducer(state, action) {
                 ...state,
                 todos: removeTodos
             };
+
+        case "EDDIT_TODO":
+            return {
+                ...state,
+                currentTodo: action.payload
+            };
+
+        case "UPDATE_TODO":
+            const updatedTodos = actionUpdateTodos(state, action.payload);
+            return {
+                ...state,
+                todos: updatedTodos,
+                currentTodo: ""
+            }
 
         default:
             return state;
