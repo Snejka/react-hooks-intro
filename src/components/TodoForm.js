@@ -8,6 +8,8 @@ export default function TodoForm () {
     useEffect( () => {
         if(currentTodo.text) {
             setTodo(currentTodo.text);
+        } else { 
+            setTodo("");
         }
     }, [currentTodo.id]);
 
@@ -19,8 +21,6 @@ export default function TodoForm () {
         } else {
             dispatch({type: "ADD_TODO", payload: todo });
         }
-
-        setTodo("");
     }
     return (
     <form onSubmit={handleSubmit}>

@@ -17,10 +17,12 @@ export default function reducer(state, action) {
             };
 
         case "REMOVE_TODO":
+            const isRemovedTodo = (state.currentTodo.id === action.payload.id) ? {} : state.currentTodo;
             const removeTodos = actionRemoveTodos(state, action.payload);
             return {
                 ...state,
-                todos: removeTodos
+                todos: removeTodos,
+                currentTodo: isRemovedTodo
             };
 
         case "EDDIT_TODO":
