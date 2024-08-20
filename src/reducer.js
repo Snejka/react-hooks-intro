@@ -17,7 +17,7 @@ export default function reducer(state, action) {
             };
 
         case "REMOVE_TODO":
-            const removeTodos = (state, action.payload);
+            const removeTodos = actionRemoveTodos(state, action.payload);
             return {
                 ...state,
                 todos: removeTodos
